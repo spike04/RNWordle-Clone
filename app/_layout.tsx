@@ -23,8 +23,11 @@ import {
 import { useEffect } from 'react'
 import { useColorScheme } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { LogBox } from 'react-native'
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!
+
+LogBox.ignoreLogs(['Clerk:'])
 
 if (!publishableKey) {
   if (!publishableKey) {
@@ -78,6 +81,18 @@ export default function RootLayout() {
                         />
                       </TouchableOpacity>
                     ),
+                  }}
+                />
+                <Stack.Screen
+                  name="game"
+                  options={{
+                    headerBackTitle: 'Wordle',
+                    headerTintColor: colorScheme === 'dark' ? '#fff' : '#000',
+                    title: '',
+                    headerBackTitleStyle: {
+                      fontSize: 26,
+                      fontFamily: 'FrankRuhlLibre_800ExtraBold',
+                    },
                   }}
                 />
               </Stack>
