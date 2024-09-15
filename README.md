@@ -8,6 +8,7 @@ Wordle Clone is a clone of the popular wordle game. This application has been cr
 - SVG Support in React Native
 - Loading Custom Fonts (Here Google Fonts)
 - Bottom Sheet Modal
+- Clerk For Authentication Flow
 
 and many more.
 
@@ -17,6 +18,7 @@ and many more.
 <img src="./screenshots/1.png" width="200" style="padding: 10px" />
 <img src="./screenshots/2.png" width="200" style="padding: 10px" />
 <img src="./screenshots/3.png" width="200" style="padding: 10px" />
+<img src="./screenshots/4.png" width="200" style="padding: 10px" />
 </p>
 
 This project will get more updates as commit.

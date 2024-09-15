@@ -2,6 +2,7 @@ import Icon from '@/assets/images/wordle-icon.svg'
 import SubscribeModal from '@/components/SubscribeModal'
 import ThemedText from '@/components/ThemedText'
 import { Colors } from '@/constants/Colors'
+import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-expo'
 import { BottomSheetModal } from '@gorhom/bottom-sheet'
 import { format } from 'date-fns'
 import { Link } from 'expo-router'
@@ -19,6 +20,7 @@ export default function Index() {
   const subscribeModalRef = useRef<BottomSheetModal | null>(null)
   const backgroundColor = Colors[colorScheme ?? 'light'].background
   const textColor = Colors[colorScheme ?? 'light'].text
+  const { signOut } = useAuth()
 
   const handlePresentSubscribeModal = () => {
     subscribeModalRef.current?.present()
@@ -52,9 +54,28 @@ export default function Index() {
             <Text style={[styles.btnText, { color: '#fff' }]}>Play</Text>
           </TouchableOpacity>
         </Link>
-        <TouchableOpacity style={[styles.btn, { borderColor: textColor }]}>
-          <ThemedText style={[styles.btnText]}>Log in</ThemedText>
-        </TouchableOpacity>
+
+        <SignedOut>
+          <Link
+            href="/login"
+            asChild
+            style={[styles.btn, { borderColor: textColor }]}
+          >
+            <TouchableOpacity>
+              <ThemedText style={[styles.btnText]}>Log in</ThemedText>
+            </TouchableOpacity>
+          </Link>
+        </SignedOut>
+
+        <SignedIn>
+          <TouchableOpacity
+            style={[styles.btn, { borderColor: textColor }]}
+            onPress={() => signOut()}
+          >
+            <ThemedText style={[styles.btnText]}>Sign Out</ThemedText>
+          </TouchableOpacity>
+        </SignedIn>
+
         <TouchableOpacity
           style={[styles.btn, { borderColor: textColor }]}
           onPress={handlePresentSubscribeModal}
